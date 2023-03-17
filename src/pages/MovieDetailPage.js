@@ -1,5 +1,4 @@
-import { Helmet, HelmetProvider } from "react-helmet-async";
-import { MetaTags } from "react-meta-tags";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import useSWR from "swr";
@@ -10,16 +9,17 @@ function MovieDetailPage() {
   const { movieID } = useParams();
   const { data } = useSWR(urlAPI.getMovieDetail(movieID), fetcher);
   const detailMovie = data || {};
+  useEffect(() => {
+    if (detailMovie.title) {
+      document.title = detailMovie.title;
+    }
+  }, [detailMovie]);
   if (!detailMovie) return;
   const { backdrop_path, poster_path, title, genres, overview, id } =
     detailMovie;
+
   return (
     <div className="">
-      <MetaTags>
-        <title>{title}</title>
-        <meta name="description" content={title} />
-        <meta property="og:title" content={title} />
-      </MetaTags>
       <div className="relative">
         <div className="absolute inset-0 bg-black bg-opacity-30"></div>
         <div
