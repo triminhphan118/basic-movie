@@ -8,7 +8,7 @@ function HomePage() {
   return (
     <>
       <Helmet>
-        <meta property="og:title" content={title} />
+        <meta property="og:title" content={"hihihi day la content"} />
       </Helmet>
       <Banner></Banner>
       <section className="movies-now page-container text-white mb-10">
