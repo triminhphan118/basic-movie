@@ -1,10 +1,15 @@
 import Banner from "../components/banner/Banner";
 import MovieList from "../components/movie/MovieList";
 import { withErrorBoundary } from "react-error-boundary";
+import {} from "Helmet";
+import { Helmet } from "react-helmet";
 
 function HomePage() {
   return (
     <>
+      <Helmet>
+        <meta property="og:title" content={title} />
+      </Helmet>
       <Banner></Banner>
       <section className="movies-now page-container text-white mb-10">
         <h3 className="capitalize text-2xl font-bold mb-10">Now playing</h3>
