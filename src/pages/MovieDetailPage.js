@@ -1,3 +1,4 @@
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import useSWR from "swr";
@@ -12,51 +13,57 @@ function MovieDetailPage() {
   const { backdrop_path, poster_path, title, genres, overview, id } =
     detailMovie;
   return (
-    <div className="">
-      <div className="relative">
-        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-        <div
-          className="w-full h-[600px] bg-cover bg-no-repeat rounded-md"
-          style={
-            backdrop_path && {
-              backgroundImage: `url(
+    <HelmetProvider>
+      <Helmet>
+        <title>{title}</title>
+        <meta property="og:title" content={title} />
+      </Helmet>
+      <div className="">
+        <div className="relative">
+          <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+          <div
+            className="w-full h-[600px] bg-cover bg-no-repeat rounded-md"
+            style={
+              backdrop_path && {
+                backgroundImage: `url(
               ${urlAPI.getImage(backdrop_path, "original")}
             )`,
+              }
             }
-          }
-        />
-      </div>
-      <div className="w-full h-[500px] mx-auto max-w-[800px] relative -mt-[250px]">
-        <img
-          src={urlAPI.getImage(poster_path, "original")}
-          alt=""
-          className="w-full h-full object-cover rounded-lg"
-        />
-      </div>
-      <h1 className="text-5xl text-white font-semibold text-center my-14">
-        {title}
-      </h1>
-
-      {genres && (
-        <div className="flex gap-8 justify-center mb-12">
-          {genres.length > 0 &&
-            genres.map((item) => (
-              <span
-                key={item.id}
-                className="text-lg text-[#7D6AFF] border border-[#7D6AFF] px-12 py-3 rounded-md"
-              >
-                {item.name}
-              </span>
-            ))}
+          />
         </div>
-      )}
-      <p className="font-normal text-white text-base text-center mb-10">
-        {overview}
-      </p>
-      <MovieCasts></MovieCasts>
-      <MovieVideo></MovieVideo>
-      <MovieSimilar></MovieSimilar>
-    </div>
+        <div className="w-full h-[500px] mx-auto max-w-[800px] relative -mt-[250px]">
+          <img
+            src={urlAPI.getImage(poster_path, "original")}
+            alt=""
+            className="w-full h-full object-cover rounded-lg"
+          />
+        </div>
+        <h1 className="text-5xl text-white font-semibold text-center my-14">
+          {title}
+        </h1>
+
+        {genres && (
+          <div className="flex gap-8 justify-center mb-12">
+            {genres.length > 0 &&
+              genres.map((item) => (
+                <span
+                  key={item.id}
+                  className="text-lg text-[#7D6AFF] border border-[#7D6AFF] px-12 py-3 rounded-md"
+                >
+                  {item.name}
+                </span>
+              ))}
+          </div>
+        )}
+        <p className="font-normal text-white text-base text-center mb-10">
+          {overview}
+        </p>
+        <MovieCasts></MovieCasts>
+        <MovieVideo></MovieVideo>
+        <MovieSimilar></MovieSimilar>
+      </div>
+    </HelmetProvider>
   );
 }
 
