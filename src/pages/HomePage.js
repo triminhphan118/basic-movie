@@ -1,7 +1,6 @@
 import Banner from "../components/banner/Banner";
 import MovieList from "../components/movie/MovieList";
 import { withErrorBoundary } from "react-error-boundary";
-import {} from "Helmet";
 import { Helmet } from "react-helmet";
 
 function HomePage() {
