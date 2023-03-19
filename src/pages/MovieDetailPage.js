@@ -19,9 +19,10 @@ function MovieDetailPage() {
         <title>{title}</title>
         <meta name="description" content={`desc ${title}`} />
         <meta property="og:url" content={window.location.href} />
-        <meta property="og:type" content="article" />
+        <meta property="og:type" content="website" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={`decs ${title}`} />
+        <meta property="og:locale" key="og:locale" content="en_US" />
       </Helmet>
       <div className="">
         <div className="relative">
