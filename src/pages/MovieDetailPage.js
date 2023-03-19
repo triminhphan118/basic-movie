@@ -12,11 +12,11 @@ function MovieDetailPage() {
   if (!detailMovie) return;
   const { backdrop_path, poster_path, title, genres, overview, id } =
     detailMovie;
-
   return (
     <>
       <Helmet>
         <title>{title}</title>
+        <meta property="fb:app_id" content="1056375581823890" />
         <meta name="description" content={`desc ${title}`} />
         <meta property="og:url" content={window.location.href} />
         <meta property="og:type" content="website" />
