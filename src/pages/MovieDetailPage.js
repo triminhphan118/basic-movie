@@ -1,71 +1,84 @@
-import { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import useSWR from "swr";
-import { API_KEY, fetcher, urlAPI } from "../components/config";
+import { fetcher, urlAPI } from "../components/config";
 import MovieCard from "../components/movie/MovieCard";
 
 function MovieDetailPage() {
   const { movieID } = useParams();
   const { data } = useSWR(urlAPI.getMovieDetail(movieID), fetcher);
   const detailMovie = data || {};
-  useEffect(() => {
-    if (detailMovie.title) {
-      document.title = detailMovie.title;
-      const ogTitle = document.querySelector('meta[property="og:title"]');
-      ogTitle.setAttribute("content", detailMovie.title);
-    }
-  }, [detailMovie]);
   if (!detailMovie) return;
   const { backdrop_path, poster_path, title, genres, overview, id } =
     detailMovie;
 
   return (
-    <div className="">
-      <div className="relative">
-        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-        <div
-          className="w-full h-[600px] bg-cover bg-no-repeat rounded-md"
-          style={
-            backdrop_path && {
-              backgroundImage: `url(
-              ${urlAPI.getImage(backdrop_path, "original")}
-            )`,
+    <>
+      <Helmet>
+        <title>tienda de ropa</title>
+        <meta name="description" content="Home de la tienda" />
+        <meta
+          property="og:url"
+          content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html"
+        />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="titulo para el home de la tienda" />
+        <meta
+          property="og:description"
+          content="esta es la decripcion del home de la tienda"
+        />
+        <meta
+          property="og:image"
+          content="https://media.gettyimages.com/photos/bogota-at-sunset-picture-id107069344?s=612x612"
+        />
+      </Helmet>
+      <div className="">
+        <div className="relative">
+          <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+          <div
+            className="w-full h-[600px] bg-cover bg-no-repeat rounded-md"
+            style={
+              backdrop_path && {
+                backgroundImage: `url(
+                ${urlAPI.getImage(backdrop_path, "original")}
+                )`,
+              }
             }
-          }
-        />
-      </div>
-      <div className="w-full h-[500px] mx-auto max-w-[800px] relative -mt-[250px]">
-        <img
-          src={urlAPI.getImage(poster_path, "original")}
-          alt=""
-          className="w-full h-full object-cover rounded-lg"
-        />
-      </div>
-      <h1 className="text-5xl text-white font-semibold text-center my-14">
-        {title}
-      </h1>
-
-      {genres && (
-        <div className="flex gap-8 justify-center mb-12">
-          {genres.length > 0 &&
-            genres.map((item) => (
-              <span
-                key={item.id}
-                className="text-lg text-[#7D6AFF] border border-[#7D6AFF] px-12 py-3 rounded-md"
-              >
-                {item.name}
-              </span>
-            ))}
+          />
         </div>
-      )}
-      <p className="font-normal text-white text-base text-center mb-10">
-        {overview}
-      </p>
-      <MovieCasts></MovieCasts>
-      <MovieVideo></MovieVideo>
-      <MovieSimilar></MovieSimilar>
-    </div>
+        <div className="w-full h-[500px] mx-auto max-w-[800px] relative -mt-[250px]">
+          <img
+            src={urlAPI.getImage(poster_path, "original")}
+            alt=""
+            className="w-full h-full object-cover rounded-lg"
+          />
+        </div>
+        <h1 className="text-5xl text-white font-semibold text-center my-14">
+          {title}
+        </h1>
+
+        {genres && (
+          <div className="flex gap-8 justify-center mb-12">
+            {genres.length > 0 &&
+              genres.map((item) => (
+                <span
+                  key={item.id}
+                  className="text-lg text-[#7D6AFF] border border-[#7D6AFF] px-12 py-3 rounded-md"
+                >
+                  {item.name}
+                </span>
+              ))}
+          </div>
+        )}
+        <p className="font-normal text-white text-base text-center mb-10">
+          {overview}
+        </p>
+        <MovieCasts></MovieCasts>
+        <MovieVideo></MovieVideo>
+        <MovieSimilar></MovieSimilar>
+      </div>
+    </>
   );
 }
 
