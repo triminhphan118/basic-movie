@@ -12,6 +12,8 @@ function MovieDetailPage() {
   useEffect(() => {
     if (detailMovie.title) {
       document.title = detailMovie.title;
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      ogTitle.setAttribute("content", detailMovie.title);
     }
   }, [detailMovie]);
   if (!detailMovie) return;
