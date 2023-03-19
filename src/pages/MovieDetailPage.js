@@ -16,22 +16,12 @@ function MovieDetailPage() {
   return (
     <>
       <Helmet>
-        <title>tienda de ropa</title>
-        <meta name="description" content="Home de la tienda" />
-        <meta
-          property="og:url"
-          content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html"
-        />
+        <title>{title}</title>
+        <meta name="description" content={`desc ${title}`} />
+        <meta property="og:url" content={window.location.href} />
         <meta property="og:type" content="article" />
-        <meta property="og:title" content="titulo para el home de la tienda" />
-        <meta
-          property="og:description"
-          content="esta es la decripcion del home de la tienda"
-        />
-        <meta
-          property="og:image"
-          content="https://media.gettyimages.com/photos/bogota-at-sunset-picture-id107069344?s=612x612"
-        />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={`decs ${title}`} />
       </Helmet>
       <div className="">
         <div className="relative">
