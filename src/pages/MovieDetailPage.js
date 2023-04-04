@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet";
+import { MetaTags } from "react-meta-tags";
 import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import useSWR from "swr";
@@ -14,16 +15,12 @@ function MovieDetailPage() {
     detailMovie;
   return (
     <>
-      <Helmet>
-        <title>{title}</title>
-        <meta property="fb:app_id" content="1056375581823890" />
-        <meta name="description" content={`desc ${title}`} />
-        <meta property="og:url" content={window.location.href} />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={`decs ${title}`} />
-        <meta property="og:locale" key="og:locale" content="en_US" />
-      </Helmet>
+      <MetaTags>
+        <title>Page 1</title>
+        <meta name="description" content="Some description." />
+        <meta property="og:title" content="MyApp" />
+        <meta property="og:image" content="path/to/image.jpg" />
+      </MetaTags>
       <div className="">
         <div className="relative">
           <div className="absolute inset-0 bg-black bg-opacity-30"></div>
