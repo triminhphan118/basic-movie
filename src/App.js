@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Main from "./components/layouts/Main";
 import { withErrorBoundary } from "react-error-boundary";
 import MoviePageV2 from "pages/MoviePageV2";
+import { Helmet } from "react-helmet";
 
 // import MoviePage from "./pages/MoviePage";
 // import HomePage from "./pages/HomePage";
@@ -15,6 +16,11 @@ const MovieDetailPage = lazy(() => import("./pages/MovieDetailPage"));
 function App() {
   return (
     <>
+      <Helmet>
+        <title>{title}</title>
+        <meta name="description" content={`descsdfasd fas`} />
+        <meta property="og:title" content={"Sdfsdafasfasdf"} />
+      </Helmet>
       <Suspense fallback={<></>}>
         <Routes>
           <Route path="/" element={<Main />}>
