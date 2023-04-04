@@ -17,9 +17,9 @@ function App() {
   return (
     <>
       <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={`descsdfasd fas`} />
-        <meta property="og:title" content={"Sdfsdafasfasdf"} />
+        <title>{"Sadfawdfsafasf"}</title>
+        <meta name="description" content={`desc ${"sdfasdfsdfasdfsf"}`} />
+        <meta property="og:title" content={"SDffasfasdfdsfasf324234"} />
       </Helmet>
       <Suspense fallback={<></>}>
         <Routes>
