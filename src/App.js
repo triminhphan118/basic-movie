@@ -18,8 +18,16 @@ function App() {
     <>
       <Helmet>
         <title>{"Sadfawdfsafasf"}</title>
-        <meta name="description" content={`desc ${"sdfasdfsdfasdfsf"}`} />
-        <meta property="og:title" content={"SDffasfasdfdsfasf324234"} />
+        <meta
+          name="description"
+          itemProp="title"
+          content={`desc ${"sdfasdfsdfasdfsf"}`}
+        />
+        <meta
+          itemProp="description"
+          property="og:title"
+          content={"SDffasfasdfdsfasf324234"}
+        />
       </Helmet>
       <Suspense fallback={<></>}>
         <Routes>
