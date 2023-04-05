@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Main from "./components/layouts/Main";
 import { withErrorBoundary } from "react-error-boundary";
 import MoviePageV2 from "pages/MoviePageV2";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 // import MoviePage from "./pages/MoviePage";
 // import HomePage from "./pages/HomePage";
@@ -17,17 +17,11 @@ function App() {
   return (
     <>
       <Helmet>
-        <title>{"Sadfawdfsafasf"}</title>
+        <title>sadfsfsafsdff</title>
         <meta
           name="description"
-          itemProp="title"
-          content={`desc ${"sdfasdfsdfasdfsf"}`}
-        />
-        <meta
-          itemProp="description"
-          property="og:title"
-          content={"SDffasfasdfdsfasf324234"}
-        />
+          content="jkdhfjshdfj sohfasjf kjsfj lkfj"
+        ></meta>
       </Helmet>
       <Suspense fallback={<></>}>
         <Routes>
