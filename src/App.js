@@ -16,7 +16,7 @@ const MovieDetailPage = lazy(() => import("./pages/MovieDetailPage"));
 function App() {
   return (
     <>
-      <Suspense fallback={<></>}>
+      <Suspense fallback={<> </>}>
         <Routes>
           <Route path="/" element={<Main />}>
             <Route index element={<HomePage></HomePage>}></Route>
