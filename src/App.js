@@ -16,22 +16,12 @@ const MovieDetailPage = lazy(() => import("./pages/MovieDetailPage"));
 function App() {
   return (
     <>
-      <Helmet>
-        <title>sadfsfsafsdff</title>
-        <meta
-          name="description"
-          content="jkdhfjshdfj sohfasjf kjsfj lkfj"
-        ></meta>
-      </Helmet>
       <Suspense fallback={<></>}>
         <Routes>
           <Route path="/" element={<Main />}>
             <Route index element={<HomePage></HomePage>}></Route>
             <Route path="movies" element={<MoviePageV2></MoviePageV2>}></Route>
-            <Route
-              path="movie/:movieID"
-              element={<MovieDetailPage></MovieDetailPage>}
-            ></Route>
+            <Route path="movie/:movieID" element={<MovieDetailPage></MovieDetailPage>}></Route>
           </Route>
         </Routes>
       </Suspense>
@@ -39,9 +29,7 @@ function App() {
   );
 }
 const ErrorBoundaryFallbackComponent = () => {
-  return (
-    <div className="p-3 bg-red-200 text-red-500">Something went wrong!</div>
-  );
+  return <div className="p-3 bg-red-200 text-red-500">Something went wrong!</div>;
 };
 
 export default withErrorBoundary(App, {

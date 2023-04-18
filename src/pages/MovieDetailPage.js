@@ -10,10 +10,17 @@ function MovieDetailPage() {
   const { data } = useSWR(urlAPI.getMovieDetail(movieID), fetcher);
   const detailMovie = data || {};
   if (!detailMovie) return;
-  const { backdrop_path, poster_path, title, genres, overview, id } =
-    detailMovie;
-  return (
+  const { backdrop_path, poster_path, title, genres, overview, id } = detailMovie;
+  return detailMovie ? (
     <>
+      <Helmet>
+        <title>{title || "Movie Name"}</title>
+        <meta name="description" key="description" content="" />
+        <meta name="title" key="title" content={title || "title"} />
+        <meta property="og:title" key="og:title" content={title || "title"} />
+        <meta property="og:type" key="og:type" content="website" />
+        <meta property="og:description" key="og:description" content={overview || "Description"} />
+      </Helmet>
       <div className="">
         <div className="relative">
           <div className="absolute inset-0 bg-black bg-opacity-30"></div>
@@ -35,31 +42,26 @@ function MovieDetailPage() {
             className="w-full h-full object-cover rounded-lg"
           />
         </div>
-        <h1 className="text-5xl text-white font-semibold text-center my-14">
-          {title}
-        </h1>
+        <h1 className="text-5xl text-white font-semibold text-center my-14">{title}</h1>
 
         {genres && (
           <div className="flex gap-8 justify-center mb-12">
             {genres.length > 0 &&
               genres.map((item) => (
-                <span
-                  key={item.id}
-                  className="text-lg text-[#7D6AFF] border border-[#7D6AFF] px-12 py-3 rounded-md"
-                >
+                <span key={item.id} className="text-lg text-[#7D6AFF] border border-[#7D6AFF] px-12 py-3 rounded-md">
                   {item.name}
                 </span>
               ))}
           </div>
         )}
-        <p className="font-normal text-white text-base text-center mb-10">
-          {overview}
-        </p>
+        <p className="font-normal text-white text-base text-center mb-10">{overview}</p>
         <MovieCasts></MovieCasts>
         <MovieVideo></MovieVideo>
         <MovieSimilar></MovieSimilar>
       </div>
     </>
+  ) : (
+    <></>
   );
 }
 
@@ -71,9 +73,7 @@ function MovieCasts() {
   if (casts && !casts.length) return;
   return (
     <div className="mb-10">
-      <h3 className="font-semibold text-3xl text-white text-center mb-10">
-        Casts
-      </h3>
+      <h3 className="font-semibold text-3xl text-white text-center mb-10">Casts</h3>
       <div className="grid grid-cols-4 gap-5">
         {casts.slice(0, 4).map((item) => (
           <div key={item.id} className="flex flex-col gap-2">
@@ -99,9 +99,7 @@ function MovieVideo() {
     <div className="mb-10">
       {video.slice(0, 2).map((item) => (
         <div key={item.key} className="w-full aspect-video h-full">
-          <h3 className="inline-block text-2xl text-white bg-secondary py-3 px-10 rounded-lg mb-5">
-            {item.name}
-          </h3>
+          <h3 className="inline-block text-2xl text-white bg-secondary py-3 px-10 rounded-lg mb-5">{item.name}</h3>
           <iframe
             width="853"
             height="480"
@@ -127,9 +125,7 @@ function MovieSimilar() {
   if (similar && !similar.length) return;
   return (
     <div>
-      <h3 className="font-semibold text-3xl text-white text-center mb-10">
-        Similar Movies
-      </h3>
+      <h3 className="font-semibold text-3xl text-white text-center mb-10">Similar Movies</h3>
       <div className="movie-list">
         <Swiper spaceBetween={30} grabCursor={true} slidesPerView={4}>
           {similar.map((item) => (
